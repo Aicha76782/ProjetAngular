@@ -1,13 +1,19 @@
-<h1>
-  <nav>
-    <a routerLink="/home">{{titre}}</a>
-  </nav>
-</h1>
-<button mat-raised-button color="primary" (click)="genererDonneesDeTest()">
-  PEUPLER BD AVEC DONNEES DE TEST
-</button>
-<!-- On va afficher le composant correspondant 
-     à la route active
--->
-<router-outlet></router-outlet>
-
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/assignments" (click)="sidenav.close()">Assignments</a>
+      <a mat-list-item (click)="logout()" *ngIf="isLoggedIn()">Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>My Assignment App</span>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
